@@ -22,16 +22,16 @@ from torch.utils.data import DataLoader
 from torch.cuda import amp
 import ast
 
-from flowtron import FlowtronLoss
-from flowtron import Flowtron
-from data import Data, DataCollate
-from flowtron_logger import FlowtronLogger
-from radam import RAdam
+from flowtron.flowtron import FlowtronLoss
+from flowtron.flowtron import Flowtron
+from flowtron.data import Data, DataCollate
+from flowtron.flowtron_logger import FlowtronLogger
+from flowtron.radam import RAdam
 
 # =====START: ADDED FOR DISTRIBUTED======
-from distributed import init_distributed
-from distributed import apply_gradient_allreduce
-from distributed import reduce_tensor
+from flowtron.distributed import init_distributed
+from flowtron.distributed import apply_gradient_allreduce
+from flowtron.distributed import reduce_tensor
 from torch.utils.data.distributed import DistributedSampler
 # =====END:   ADDED FOR DISTRIBUTED======
 
@@ -377,7 +377,7 @@ def train(n_gpus, rank, output_directory, epochs, optim_algo, learning_rate,
             iteration += 1
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', type=str,
                         help='JSON file for configuration')
@@ -413,3 +413,7 @@ if __name__ == "__main__":
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = False
     train(n_gpus, rank, **train_config)
+
+
+if __name__ == "__main__":
+    main()

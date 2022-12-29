@@ -1,8 +1,8 @@
 """ from https://github.com/keithito/tacotron """
 import re
-from text import cleaners
-from text.symbols import symbols
-from text.symbols import _punctuation as punctuation_symbols
+from flowtron.text import cleaners
+from flowtron.text.symbols import symbols
+from flowtron.text.symbols import _punctuation as punctuation_symbols
 
 # Mappings from symbol to numeric ID and vice versa:
 _symbol_to_id = {s: i for i, s in enumerate(symbols)}
@@ -13,6 +13,7 @@ _curly_re = re.compile(r'(.*?)\{(.+?)\}(.*)')
 
 # for arpabet with apostrophe
 _apostrophe = re.compile(r"(?=\S*['])([a-zA-Z'-]+)")
+
 
 def text_to_sequence(text):
     '''Converts a string of text to a sequence of IDs corresponding to the symbols in the text.
@@ -116,5 +117,6 @@ def files_to_list(filename):
 
     files = [f.rstrip() for f in files]
     return files
+
 
 HETERONYMS = set(files_to_list('data/heteronyms'))

@@ -17,8 +17,8 @@
 import random
 import torch
 from torch.utils.tensorboard import SummaryWriter
-from flowtron_plotting_utils import plot_alignment_to_numpy
-from flowtron_plotting_utils import plot_gate_outputs_to_numpy
+from flowtron.flowtron_plotting_utils import plot_alignment_to_numpy
+from flowtron.flowtron_plotting_utils import plot_gate_outputs_to_numpy
 
 
 class FlowtronLogger(SummaryWriter):

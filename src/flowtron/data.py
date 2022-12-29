@@ -24,8 +24,8 @@ import torch
 import torch.utils.data
 from scipy.io.wavfile import read
 from scipy.stats import betabinom
-from audio_processing import TacotronSTFT
-from text import text_to_sequence, cmudict, _clean_text, get_arpabet
+from flowtron.audio_processing import TacotronSTFT
+from flowtron.text import text_to_sequence, cmudict, _clean_text, get_arpabet
 
 
 def beta_binomial_prior_distribution(phoneme_count, mel_count,
@@ -250,7 +250,7 @@ class DataCollate():
 # Takes directory of clean audio and makes directory of spectrograms
 # Useful for making test sets
 # ===================================================================
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', type=str,
                         help='JSON file for configuration')
@@ -281,3 +281,7 @@ if __name__ == "__main__":
         new_filepath = args.output_dir + '/' + filename + '.pt'
         print(new_filepath)
         torch.save(melspectrogram, new_filepath)
+
+
+if __name__ == "__main__":
+    main()

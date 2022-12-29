@@ -14,9 +14,9 @@ hyperparameter. Some cleaners are English-specific. You'll typically want to use
 
 import re
 from unidecode import unidecode
-from .numbers import normalize_numbers
-from .acronyms import normalize_acronyms
-from .datestime import normalize_datestime
+from flowtron.text.numbers import normalize_numbers
+from flowtron.text.acronyms import normalize_acronyms
+from flowtron.text.datestime import normalize_datestime
 
 
 # Regular expression matching whitespace:
@@ -50,16 +50,17 @@ _safe_abbreviations = [(re.compile('\\b%s\\.' % x[0], re.IGNORECASE), x[1]) for 
 ]]
 
 
-
 def expand_abbreviations(text):
     for regex, replacement in _abbreviations:
         text = re.sub(regex, replacement, text)
     return text
 
+
 def expand_safe_abbreviations(text):
     for regex, replacement in _safe_abbreviations:
         text = re.sub(regex, replacement, text)
     return text
+
 
 def expand_numbers(text):
     return normalize_numbers(text)

@@ -1,5 +1,5 @@
 import re
-from .cmudict import CMUDict
+from flowtron.text.cmudict import CMUDict
 
 _letter_to_arpabet = {
     'A': 'EY1',

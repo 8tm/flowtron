@@ -26,14 +26,14 @@ import numpy as np
 import torch
 
 
-from flowtron import Flowtron
+from flowtron.flowtron import Flowtron
 from torch.utils.data import DataLoader
-from data import Data
-from train import update_params
+from flowtron.data import Data
+from flowtron.train import update_params
 
-sys.path.insert(0, "tacotron2")
-sys.path.insert(0, "tacotron2/waveglow")
-from glow import WaveGlow
+# sys.path.insert(0, "tacotron2")
+# sys.path.insert(0, "tacotron2/waveglow")
+from waveglow.glow import WaveGlow
 from scipy.io.wavfile import write
 
 
@@ -90,7 +90,7 @@ def infer(flowtron_path, waveglow_path, output_dir, text, speaker_id, n_frames,
           data_config['sampling_rate'], audio)
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', type=str,
                         help='JSON file for configuration')
@@ -130,3 +130,7 @@ if __name__ == "__main__":
     torch.backends.cudnn.benchmark = False
     infer(args.flowtron_path, args.waveglow_path, args.output_dir, args.text,
           args.id, args.n_frames, args.sigma, args.gate, args.seed)
+
+
+if __name__ == "__main__":
+    main()

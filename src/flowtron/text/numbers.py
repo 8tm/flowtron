@@ -14,12 +14,13 @@ _measurement_re = re.compile(r'([0-9\.\,]*[0-9]+(\s)?{}\b)'.format(_measurements
 _ordinal_re = re.compile(r'[0-9]+(st|nd|rd|th)')
 _number_re = re.compile(r"[0-9]+'s|[0-9]+")
 
+
 def _remove_commas(m):
-  return m.group(1).replace(',', '')
+    return m.group(1).replace(',', '')
 
 
 def _expand_decimal_point(m):
-  return m.group(1).replace('.', ' point ')
+    return m.group(1).replace('.', ' point ')
 
 
 def _expand_dollars(m):
